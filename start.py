@@ -9,6 +9,7 @@ config = configparser.ConfigParser()
 config.read('htt.conf')
 domain = str(config['DEFAULT']['domain'])
 MAINTENANCE_INTERVAL_MINUTES = float(config['DEFAULT']['cleartime'])
+port = float(config['DEFAULT']['port'])
 
 def popup(mesage,link="",file="popup.html"):
     out = load(file)
@@ -118,5 +119,10 @@ if __name__ == "__main__":
             "tools.staticdir.dir": os.path.abspath("uploads"),
         }
     }
+    cherrypy.config.update({
+                'server.socket_host': '0.0.0.0',  # Bind to all available network interfaces
+                'server.socket_port': port,
+                'log.screen': True,
+                                    })
 
     cherrypy.quickstart(FileUploadApp(), "/", config)
