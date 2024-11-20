@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-   <title>index.html</title>
+   <title>Here To There</title>
    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
@@ -9,7 +9,7 @@
    <style>
       .title,
       .main {
-         background-color: hsl(10, 100%, 51%);
+         background-color: hsl(0, 0%, 0%);
          backdrop-filter: blur(10px);
          color: white;
          padding: 20px;
@@ -40,9 +40,11 @@
       .download {
          color: white;
          border-radius: 20px;
-         background-color: #fe0000;
+         background-color: #000000;
          margin: 20px;
          padding: 20px;
+         width: 300px;
+         height: 200px;
       }
 
       input,
@@ -50,7 +52,7 @@
          padding: 10px;
          margin: 10px;
          border-radius: 20px;
-         background-color: rgb(52, 52, 52);
+         background-color: rgb(79, 79, 79);
          border: none;
          color: rgb(222, 222, 222);
 
@@ -65,7 +67,7 @@
 
    <body>
       <div class="title">
-         <h1>Here to there</h1>
+         <h1>Here To There</h1>
          <h2>A simple file transfer website</h2>
       </div>
       <div class="main">
@@ -81,8 +83,9 @@
          <div class="download">
             <h2>Retrieve a File</h2>
             <form action="download" method="get">
-               <p>id:</p>
-               <input type="text" name="code" placeholder="Enter file code" />
+               <input type="text" name="code" placeholder="Enter the code for the file" />
+               <br>
+               <br>
                <button type="submit">Retrieve</button>
             </form>
          </div>
