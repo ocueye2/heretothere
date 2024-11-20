@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+   <title>index.html</title>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+   <style>
+      .title {
+         background-color: #ff0000;
+         color: white;
+         padding: 20px;
+         margin: 20px;
+         border-radius: 20px;
+      }
+
+      .main {
+         display: flex;
+         background-color: gray;
+         padding: 20px;
+         margin: 20px;
+         border-radius: 20px;
+      }
+
+      body {
+         font-family: 'Montserrat', sans-serif;
+         background-color: rgb(37, 37, 37);
+      }
+
+      .upload,
+      .download {
+         color: white;
+         border-radius: 20px;
+         background-color: #ff0000;
+         margin: 20px;
+         padding: 20px;
+      }
+
+      input,
+      button {
+         padding: 10px;
+         margin: 10px;
+         border-radius: 20px;
+         background-color: rgb(52, 52, 52);
+         border: none;
+         color: rgb(222, 222, 222);
+
+
+      }
+   </style>
+   <html>
+
+   <head>
+      <title>File Upload</title>
+   </head>
+
+   <body>
+      <div class="title">
+         <h1>Here to there</h1>
+         <h2>A simple file transfer webserver</h2>
+      </div>
+      <div class="main">
+         <div class="upload">
+            <h2>Upload a File</h2>
+            <form action="upload" method="post" enctype="multipart/form-data">
+               <input type="file" name="file" />
+               <br><br>
+               <input type="submit" value="Upload" />
+            </form>
+         </div>
+         <br><br>
+         <div class="download">
+            <h2>Retrieve a File</h2>
+            <form action="download" method="get">
+               <p>id:</p>
+               <input type="text" name="code" placeholder="Enter file code" />
+               <button type="submit">Retrieve</button>
+            </form>
+         </div>
+      </div>
+   </body>
+
+   </html>
+</body>
+
+</html>
