@@ -9,7 +9,7 @@ config = configparser.ConfigParser()
 config.read('htt.conf')
 domain = str(config['DEFAULT']['domain'])
 MAINTENANCE_INTERVAL_MINUTES = float(config['DEFAULT']['cleartime'])
-port = float(config['DEFAULT']['port'])
+port = int(config['DEFAULT']['port'])
 
 def popup(mesage,link="",file="popup.html"):
     out = load(file)
