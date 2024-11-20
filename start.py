@@ -13,7 +13,7 @@ def load(file):
     with open(f"{path}/webpage/{file}") as f:
         return f.read()
 # Maximum time in minutes before a file is removed
-MAINTENANCE_INTERVAL_MINUTES = 1
+MAINTENANCE_INTERVAL_MINUTES = 10
 
 
 def clear_cache():
