@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<head>
+   <title>info</title>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+   <style>
+      body {
+         font-family: 'Montserrat', sans-serif;
+         font-family: 'Montserrat', sans-serif;
+         background: hsla(198, 100%, 50%, 1);
+
+         background: linear-gradient(90deg, hsla(198, 100%, 50%, 1) 0%, hsla(188, 92%, 49%, 1) 48%, hsla(201, 100%, 49%, 1) 97%);
+
+         background: -moz-linear-gradient(90deg, hsla(198, 100%, 50%, 1) 0%, hsla(188, 92%, 49%, 1) 48%, hsla(201, 100%, 49%, 1) 97%);
+
+         background: -webkit-linear-gradient(90deg, hsla(198, 100%, 50%, 1) 0%, hsla(188, 92%, 49%, 1) 48%, hsla(201, 100%, 49%, 1) 97%);
+
+         filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00B2FF", endColorstr="#0AD2F1", GradientType=1);
+         background-repeat: no-repeat;
+         background-size: cover;
+      }
+
+      .popup {
+         width: 90%;
+         height: 90%;
+         color: white;
+         border-radius: 20px;
+         background-color: hsla(0, 0%, 37%, 0.676);
+         backdrop-filter: blur(20px);
+         margin: 20px;
+         padding: 20px;
+      }
+
+      input,
+      button {
+         padding: 10px;
+         margin: 10px;
+         border-radius: 20px;
+         background-color: rgb(52, 52, 52);
+         border: none;
+         color: rgb(222, 222, 222);
+
+
+      }
+
+      .button {
+         text-decoration: none;
+         padding: 10px;
+         border-radius: 20px;
+         background-color: rgb(0, 0, 0);
+         color: aliceblue;
+
+      }
+
+      .code {
+         border-radius: 20px;
+         background-color: black;
+         padding: 20px;
+
+      }
+   </style>
+   <html>
+
+   <head>
+      <title>File Uploaded</title>
+   </head>
+
+   <body>
+      <script>
+         function copycode() {
+            var copyText = document.getElementById("copy").textContent.trim();
+            copy(copyText);
+         }
+
+         function copylink() {
+            var copyText = document.getElementById("link").textContent.trim();
+            copy(copyText);
+         }
+
+         function copy(text) {
+            // Copy the text using the clipboard API
+            navigator.clipboard.writeText(text).then(() => {
+               alert("Copied the text: " + text);
+            }).catch(err => {
+               console.error('Failed to copy text: ', err);
+            });
+         }
+
+      </script>
+      <div class="popup">
+         <h1>Uploaded Successfully</h1>
+         <h2>Your file has been uploaded successfully. To download, use the code:</h2>
+         <div class="code" id="copy">
+            <popuphere>
+         </div>
+         <button onclick="copycode()">Copy Code</button>
+         <h2>Or use the link:</h2>
+         <div class="code" id="link">
+            <linkhere>
+         </div>
+         <button onclick="copylink()">Copy Link</button>
+         <a class="button" href="/">Home</a>
+      </div>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br><br> <br> <br> <br>
+   </body>
+
+   </html>
+</body>
+
+</html>

@@ -3,17 +3,23 @@ import sys
 import cherrypy
 import time
 import shutil
+import configparser
 
-def popup(mesage):
-    out = load("popup.html")
-    return  out.replace("<popuphere>",mesage)
+config = configparser.ConfigParser()
+config.read('htt.conf')
+domain = str(config['DEFAULT']['domain'])
+MAINTENANCE_INTERVAL_MINUTES = float(config['DEFAULT']['cleartime'])
+
+def popup(mesage,link="",file="popup.html"):
+    out = load(file)
+    out = out.replace("<popuphere>",str(mesage))
+    out = out.replace("<linkhere>",str(link))
+    return  out
 
 def load(file):
     path = os.path.dirname(os.path.realpath(sys.argv[0]))
     with open(f"{path}/webpage/{file}") as f:
         return f.read()
-# Maximum time in minutes before a file is removed
-MAINTENANCE_INTERVAL_MINUTES = 10
 
 
 def clear_cache():
@@ -76,7 +82,7 @@ class FileUploadApp:
                 while chunk := file.file.read(8192):
                     f.write(chunk)
 
-            return popup(f"File '{file.filename}' uploaded successfully! Your code is {ident}.")
+            return popup(ident,f"{domain}/download?code={ident}","upload.html")
         except Exception as e:
             return popup(f"An error occurred during upload: {str(e)}")
 
