@@ -11,9 +11,11 @@ I made it because all of the options eather have ads, only work on the lan, or c
 (This is desined to be run on linux)
 
 ### linux
-to run this program, make a venv virtual enviroment and run `pip install cherrypy qrcode pillow` and then run `start.py`. 
+to run this program, make a venv virtual enviroment and run `pip install cherrypy qrcode pillow`,
+edit `htt.conf` and then run `start.py`. 
 ### docker
-just clone this repo
+
+just clone this repo, remote into the container, use nano to edit `htt.conf`, and restart the container
 
 
 ## ToDo
