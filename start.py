@@ -10,7 +10,8 @@ config.read('htt.conf')
 domain = str(config['DEFAULT']['domain'])
 MAINTENANCE_INTERVAL_MINUTES = float(config['DEFAULT']['cleartime'])
 port = int(config['DEFAULT']['port'])
-
+maxfilesize = int(config['DEFAULT']['filesizemb'])
+maxfilesize = maxfilesize * 10 * 1024 * 1024
 def popup(mesage,link="",file="popup.html"):
     out = load(file)
     out = out.replace("<popuphere>",str(mesage))
@@ -67,6 +68,14 @@ class FileUploadApp:
     def upload(self, file):
         clear_cache()
         try:
+            # test file size
+            file_size = 0
+            file.file.seek(0, os.SEEK_END)  # Seek to the end of the file
+            file_size = file.file.tell()    # Get the current position (file size)
+            file.file.seek(0)
+            if file_size > MAX_FILE_SIZE:
+                return  popup(f"This file is to large, max size is is {maxfilesize}")
+
             # Find the lowest unused number as the identifier
             existing_ids = set(int(folder) for folder in os.listdir(self.upload_dir) if folder.isdigit())
             ident = 1  # Start checking from 1
