@@ -62,6 +62,7 @@
          padding: 20px;
 
       }
+
       button:hover {
          transition: all .3s;
 
@@ -75,6 +76,9 @@
 
    <body>
       <script>
+         
+
+
          function copycode() {
             var copyText = document.getElementById("copy").textContent.trim();
             copy(copyText);
@@ -104,7 +108,8 @@
          <button onclick="copycode()">Copy Code</button>
          <h2>The qr code:</h2>
          <div class="code">
-            <img src="https://vscode.carsonmayn.com/proxy/8170/qrcode?link=<linkhere>" alt="QR Code" style="border-radius: 20px;">
+            <img src="https://vscode.carsonmayn.com/proxy/8170/qrcode?link=<linkhere>" alt="QR Code"
+               style="border-radius: 20px;">
          </div>
          <h2>Or use the link:</h2>
          <div class="code" id="link">
@@ -120,6 +125,3 @@
    </body>
 
    </html>
-</body>
-
-</html>
