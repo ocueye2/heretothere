@@ -73,7 +73,7 @@ class FileUploadApp:
             file.file.seek(0, os.SEEK_END)  # Seek to the end of the file
             file_size = file.file.tell()    # Get the current position (file size)
             file.file.seek(0)
-            if file_size > MAX_FILE_SIZE:
+            if file_size > maxfilesize:
                 return  popup(f"This file is to large, max size is is {maxfilesize}")
 
             # Find the lowest unused number as the identifier
