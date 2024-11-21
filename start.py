@@ -4,6 +4,8 @@ import cherrypy
 import time
 import shutil
 import configparser
+import qrcode
+from io import BytesIO
 
 config = configparser.ConfigParser()
 config.read('htt.conf')
@@ -11,7 +13,9 @@ domain = str(config['DEFAULT']['domain'])
 MAINTENANCE_INTERVAL_MINUTES = float(config['DEFAULT']['cleartime'])
 port = int(config['DEFAULT']['port'])
 maxfilesize = int(config['DEFAULT']['filesizemb'])
+maxsizemb = str(maxfilesize)
 maxfilesize = maxfilesize * 10 * 1024 * 1024
+
 def popup(mesage,link="",file="popup.html"):
     out = load(file)
     out = out.replace("<popuphere>",str(mesage))
@@ -20,8 +24,13 @@ def popup(mesage,link="",file="popup.html"):
 
 def load(file):
     path = os.path.dirname(os.path.realpath(sys.argv[0]))
+    
+    
     with open(f"{path}/webpage/{file}") as f:
-        return f.read()
+        out = f.read()
+        if file == "index.html":
+            out = out.replace("!MAXFILESIZEHERE!",str(maxsizemb))
+        return out
 
 
 def clear_cache():
@@ -72,9 +81,9 @@ class FileUploadApp:
             file_size = 0
             file.file.seek(0, os.SEEK_END)  # Seek to the end of the file
             file_size = file.file.tell()    # Get the current position (file size)
-            file.file.seek(0)
+            file.file.seek(0)   #
             if file_size > maxfilesize:
-                return  popup(f"This file is to large, max size is is {maxfilesize}")
+                return  popup(f"This file is to large, max size is is {maxfilesize / 10,485,760}mb")
 
             # Find the lowest unused number as the identifier
             existing_ids = set(int(folder) for folder in os.listdir(self.upload_dir) if folder.isdigit())
@@ -110,12 +119,42 @@ class FileUploadApp:
                 raise FileNotFoundError("No files found for this code.")
 
             file_path = os.path.join(download_path, files[0])
-            absolute_file_path = os.path.abspath(file_path)  # Convert to absolute path
+            absolute_file_path = os.path.abspath(file_path)
 
             # Serve the file as a downloadable attachment
             return cherrypy.lib.static.serve_file(absolute_file_path, "application/octet-stream", "attachment")
         except Exception as e:
             return popup(f"An error occurred: {str(e)}")
+
+    @cherrypy.expose
+    def qrcode(self, link=None):
+        if not link:
+            raise cherrypy.HTTPError(400, "Bad Request: No link provided.")
+        elif not domain in link:
+            raise cherrypy.HTTPError(400, "Bad Request: No link provided.")
+
+        # Generate the QR Code
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        qr.add_data(link)
+        qr.make(fit=True)
+
+        # Create an image for the QR Code
+        img = qr.make_image(fill_color="black", back_color="white")
+        buffered = BytesIO()
+        img.save(buffered, format="PNG")
+        buffered.seek(0)
+
+        # Serve the image as PNG
+        cherrypy.response.headers['Content-Type'] = 'image/png'
+        return buffered.read()
+        
+
+
 
 
 if __name__ == "__main__":

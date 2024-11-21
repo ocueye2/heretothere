@@ -1,11 +1,9 @@
 <!DOCTYPE html>
+<html>
 
 <head>
    <title>Here To There</title>
    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
    <style>
       .title,
       .main {
@@ -22,17 +20,12 @@
          display: flex;
       }
 
-
       body {
          font-family: 'Montserrat', sans-serif;
          background: hsla(198, 100%, 50%, 1);
-
          background: linear-gradient(90deg, hsla(198, 100%, 50%, 1) 0%, hsla(188, 92%, 49%, 1) 48%, hsla(201, 100%, 49%, 1) 97%);
-
          background: -moz-linear-gradient(90deg, hsla(198, 100%, 50%, 1) 0%, hsla(188, 92%, 49%, 1) 48%, hsla(201, 100%, 49%, 1) 97%);
-
          background: -webkit-linear-gradient(90deg, hsla(198, 100%, 50%, 1) 0%, hsla(188, 92%, 49%, 1) 48%, hsla(201, 100%, 49%, 1) 97%);
-
          filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00B2FF", endColorstr="#0AD2F1", GradientType=1);
       }
 
@@ -55,44 +48,52 @@
          background-color: rgb(79, 79, 79);
          border: none;
          color: rgb(222, 222, 222);
-
-
       }
    </style>
-   <html>
+</head>
 
-   <head>
-      <title>File Upload</title>
-   </head>
-
-   <body>
-      <div class="title">
-         <h1>Here To There</h1>
-         <h2>A simple file transfer website</h2>
+<body>
+   <div class="title">
+      <h1>Here To There</h1>
+      <h2>A simple file transfer website</h2>
+   </div>
+   <div class="main">
+      <div class="upload">
+         <h2>Upload a File</h2>
+         <form action="upload" method="post" enctype="multipart/form-data" id="uploadForm">
+            <input type="file" name="file" id="fileInput" />
+            <br><br>
+            <input type="submit" value="Upload" id="submitButton" />
+            <p id="error" style="color: red; display: none;">File size must be below !MAXFILESIZEHERE! MB.</p>
+         </form>
       </div>
-      <div class="main">
-         <div class="upload">
-            <h2>Upload a File</h2>
-            <form action="upload" method="post" enctype="multipart/form-data">
-               <input type="file" name="file" />
-               <br><br>
-               <input type="submit" value="Upload" />
-            </form>
-         </div>
-         <br><br>
-         <div class="download">
-            <h2>Retrieve a File</h2>
-            <form action="download" method="get">
-               <input type="text" name="code" placeholder="Enter the code for the file" />
-               <br>
-               <br>
-               <button type="submit">Retrieve</button>
-            </form>
-         </div>
+      <br><br>
+      <div class="download">
+         <h2>Retrieve a File</h2>
+         <form action="download" method="get">
+            <input type="text" name="code" placeholder="Enter the code for the file" />
+            <br><br>
+            <button type="submit">Retrieve</button>
+         </form>
       </div>
-   </body>
+   </div>
 
-   </html>
+   <script>
+      document.getElementById('uploadForm').addEventListener('submit', function (event) {
+         const fileInput = document.getElementById('fileInput');
+         const errorText = document.getElementById('error');
+
+         if (fileInput.files.length > 0) {
+            const fileSize = fileInput.files[0].size / 1024 / 1024; // Convert to MB
+            if (fileSize > !MAXFILESIZEHERE!) {
+               errorText.style.display = 'block'; // Show error message
+               event.preventDefault(); // Prevent form submission
+               return;
+            }
+         }
+         errorText.style.display = 'none'; // Hide error message
+      });
+   </script>
 </body>
 
 </html>

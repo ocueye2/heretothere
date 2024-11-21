@@ -5,7 +5,7 @@ FROM  python:3.12.3-slim
 WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install cherrypy
+RUN pip install cherrypy pillow qrcode
 # Copy the rest of your application code into the container at /app
 COPY . .
 
