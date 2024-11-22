@@ -8,7 +8,7 @@ RUN apt-get install nano
 
 # clone repo
 RUN apt-get install git
-RUN git clone https://github.com/ocueye2/my-website.git
+RUN git clone https://github.com/ocueye2/heretothere.git
 RUN pip install cherrypy
 
 
