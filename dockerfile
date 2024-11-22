@@ -6,8 +6,14 @@ RUN pip install cherrypy pillow qrcode
 RUN apt-get update
 RUN apt-get install nano
 
-COPY . .
+# clone repo
+RUN apt-get install git
+RUN git clone https://github.com/ocueye2/my-website.git
+RUN pip install cherrypy
+
 
 EXPOSE 8170
 
+
+WORKDIR /app/heretothere
 CMD ["python", "start.py"]
