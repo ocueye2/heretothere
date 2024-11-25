@@ -20,6 +20,7 @@ just clone this repo, remote into the container, use nano to edit `htt.conf`, an
 
 ## ToDo
 - [ ] make file ids use avalible random numbers
+- [ ] Encrypt on drive
 
 # for devs
 ## start.py
