@@ -14,8 +14,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install cherrypy
 
-RUN git clone https://github.com/ocueye2/heretothere.git
-
 EXPOSE 8170
 
 
