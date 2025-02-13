@@ -6,6 +6,11 @@ Here to there is a open source, self hosted verson I made of send anywhere.
 It allows you to upload files and retreve them via a code to easily. solving the problem of how to transfer your files from one device to another.
 I made it because all of the options eather have ads, only work on the lan, or cost on a subscription basis. A nas also seems overkill for a problem like this.
 
+> [!CAUTION]
+> HereToThere is not desined to be super secure
+> The pasword recall system is easy to predict currently and if forwarded to the wan,
+> Anyone could acsess any file you upload. please take a zero trust aproch to using if you forward this to the wan.
+
 ## To Run
 
 (This is desined to be run on linux)
