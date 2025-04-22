@@ -7,7 +7,7 @@ It allows you to upload files and retreve them via a code to easily. solving the
 I made it because all of the options eather have ads, only work on the lan, or cost on a subscription basis. A nas also seems overkill for a problem like this.
 
 > [!CAUTION]
-> HereToThere is not desined to be super secure.
+> HereToThere is not very secure.
 > The pasword recall system is easy to predict currently and if forwarded to the wan,
 > Anyone could download any file you upload. please take a zero trust approach to using if you forward this to the wan.
 > the best solution would be to use a encrypted zip file.
