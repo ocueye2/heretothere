@@ -9,7 +9,7 @@ I made it because all of the options eather have ads, only work on the lan, or c
 > [!CAUTION]
 > HereToThere is not desined to be super secure.
 > The pasword recall system is easy to predict currently and if forwarded to the wan,
-> Anyone could download any file you upload. please take a zero trust aproch to using if you forward this to the wan.
+> Anyone could download any file you upload. please take a zero trust approach to using if you forward this to the wan.
 > the best solution would be to use a encrypted zip file.
 
 ## To Run
